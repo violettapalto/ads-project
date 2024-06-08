@@ -1,16 +1,30 @@
 package ab2;
-
+/**
+ * This interface represents the Ab2 class.
+ */
 public interface Ab2 {
 
-	// returns an empty instance of your implementation of the AuDHashSet class
-	//   capacity: the maximum required capacity
+	/**
+	 * Returns an empty instance of your implementation of the AuDHashSet class.
+	 *
+	 * @param capacity the maximum required capacity
+	 * @return an empty AuDHashSet instance
+	 */
 	public AuDHashSet emptyHashSet(int capacity);
 
-	// returns an empty instance of your implementation of the AuDSortedTree class
+	/**
+	 * Returns an empty instance of your implementation of the AuDSortedTree class.
+	 *
+	 * @return an empty AuDSortedTree instance
+	 */
 	public AuDSortedTree emptyTree();
 
-	// returns an empty instance of your implementation of the AuDQueue class
-	//   type: LIFO or FIFO - provide a corresponding AuDQueue instance
+	/**
+	 * Returns an empty instance of your implementation of the AuDQueue class.
+	 *
+	 * @param type the type of the queue (LIFO or FIFO)
+	 * @return an empty AuDQueue instance
+	 */
 	public AuDQueue emptyQueue(AuDQueue.Type type);
 
 }
