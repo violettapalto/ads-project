@@ -10,8 +10,7 @@ public class Ab2Impl implements Ab2 {
 
     @Override
     public AuDHashSet emptyHashSet(int capacity) {
-	// TODO Auto-generated method stub
-	return null;
+        return null;
     }
 
     @Override

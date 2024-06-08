@@ -28,3 +28,6 @@ bin/
 target/
 out/
 build/
+
+# Gradle
+.gradle/
