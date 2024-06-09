@@ -10,19 +10,20 @@ public class Ab2Impl implements Ab2 {
 
     @Override
     public AuDHashSet emptyHashSet(int capacity) {
+        // TODO: Auto-generated method stub
         return null;
     }
 
     @Override
     public AuDSortedTree emptyTree() {
-	// TODO Auto-generated method stub
-	return null;
+        // TODO: Auto-generated method stub
+        return null;
     }
 
     @Override
     public AuDQueue emptyQueue(Type type) {
-	// TODO Auto-generated method stub
-	return null;
+        // TODO: Auto-generated method stub
+        return null;
     }
 
 }
