@@ -48,7 +48,7 @@ Call [`./gradlew`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3
 
 Call [`./gradlew`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fd%3A%2Fads-project%2Fgradlew%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "d:\ads-project\gradlew") zip or [`gradlew.bat`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fd%3A%2Fads-project%2Fgradlew.bat%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "d:\ads-project\gradlew.bat") zip. You will now find the uploadable ZIP file in the build folder. Submit the ZIP file via Moodle. Only one submission is necessary per group. Before submitting, rename the package `ab2.impl.Surnames` accordingly by replacing Surnames with the surnames of your group members (e.g., `ab2.impl.HuberMeierMueller`).
 
-# Evaluation
+## Evaluation
 
 This programming task is evaluated with a maximum of 15 points. The points achieved are credited equally to all group members. For more than 3 people, the points achieved are reduced proportionally per person. The evaluation results from the following components:
 

@@ -72,7 +72,7 @@ Abgabe nötig. Benennen Sie vor der Abgabe das Paket `ab2.impl.Nachnamen` entspr
 um, indem Sie Nachnamen durch die Nachnamen Ihrer Gruppenmitglieder ersetzen (z.B.
 `ab2.impl.HuberMeierMueller`).
 
-# Bewertung
+## Bewertung
 
 Diese Programmieraufgabe wird mit maximal 15 Punkten bewertet. Die erreichte
 Punktezahl wird allen Gruppenmitgliedern gleichermaßen angerechnet. Bei mehr als 3 Personen
