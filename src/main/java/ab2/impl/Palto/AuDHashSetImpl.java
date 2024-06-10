@@ -7,10 +7,14 @@ import ab2.AuDHashSet;
  */
 public class AuDHashSetImpl implements AuDHashSet {
 
+    /** The initial capacity of the hash set, used upon construction when no capacity is specified. */
     private static final int INITIAL_CAPACITY = 16;
+    /** The load factor of the hash set, used to determine when to resize the table. */
     private static final double LOAD_FACTOR = 0.75;
 
+    /** The table of entries. */
     private Entry[] table;
+    /** The number of entries in the hash set. */
     private int size;
 
     /**
@@ -31,20 +35,29 @@ public class AuDHashSetImpl implements AuDHashSet {
         size = 0;
     }
 
-    private static class Entry {
-        long key;
-        Entry next;
-
-        Entry(long key) {
-            this.key = key;
-            this.next = null;
-        }
-    }
-
+    /**
+     * Calculates the hash value for the given key.
+     *
+     * @param key the key to calculate the hash value for
+     * @return the hash value
+     */
     private int hash(long key) {
-        return (int) (key % table.length);
+        // Scramble bits using multiplication with a prime and bitwise XOR
+        key ^= 0x8DEB83FL;
+        key *= 0x3F4B3D4BL;
+
+        // Combine higher and lower 32 bits for better distribution
+        key ^= key >>> 32;
+        key *= 0xDEADBEEFL;
+        key ^= key >>> 16;
+        return (int) (key & (table.length - 1));
     }
 
+    /**
+     * Adds a value to the hash set.
+     *
+     * @param value the value to add
+     */
     @Override
     public void add(long value) {
         int index = hash(value);
@@ -67,6 +80,12 @@ public class AuDHashSetImpl implements AuDHashSet {
         }
     }
 
+    /**
+     * Checks if the hash set contains a value.
+     *
+     * @param value the value to check
+     * @return true if the value is found, false otherwise
+     */
     @Override
     public boolean contains(long value) {
         int index = hash(value);
@@ -82,6 +101,9 @@ public class AuDHashSetImpl implements AuDHashSet {
         return false;
     }
 
+    /**
+     * Resizes the hash set table when the load factor is exceeded.
+     */
     private void resizeTable() {
         int newCapacity = table.length * 2;
         Entry[] newTable = new Entry[newCapacity];
@@ -97,5 +119,26 @@ public class AuDHashSetImpl implements AuDHashSet {
         }
 
         table = newTable;
+    }
+
+    
+    /**
+     * Represents an entry in the hash set.
+     */
+    private static class Entry {
+        /** The key of the entry. */
+        long key;
+        /** The next entry in the chain. */
+        Entry next;
+
+        /**
+         * Constructs a new Entry object with the specified key.
+         *
+         * @param key the key of the entry
+         */
+        Entry(long key) {
+            this.key = key;
+            this.next = null;
+        }
     }
 }
