@@ -41,7 +41,7 @@ public class AuDHashSetImpl implements AuDHashSet {
      * @param key the key to calculate the hash value for
      * @return the hash value
      */
-    private int hash(long key) {
+    private long hash(long key) {
         // Scramble bits using multiplication with a prime and bitwise XOR
         key ^= 0x8DEB83FL;
         key *= 0x3F4B3D4BL;
@@ -50,7 +50,20 @@ public class AuDHashSetImpl implements AuDHashSet {
         key ^= key >>> 32;
         key *= 0xDEADBEEFL;
         key ^= key >>> 16;
-        return (int) (key & (table.length - 1));
+
+        return key;
+    }
+
+    /**
+     * Calculates the index for the given hash value and table length.
+     *
+     * @param hash the hash value
+     * @param length the length of the table
+     * @return the index
+     */
+    private int indexFor(long hash, int length) {
+        // Use the square of the hash value to make sure the index is positive
+        return (int) (Math.abs(hash % length));
     }
 
     /**
@@ -60,7 +73,8 @@ public class AuDHashSetImpl implements AuDHashSet {
      */
     @Override
     public void add(long value) {
-        int index = hash(value);
+        long hash = hash(value);
+        int index = indexFor(hash, table.length);
         Entry entry = new Entry(value);
 
         if (table[index] == null) {
@@ -88,7 +102,8 @@ public class AuDHashSetImpl implements AuDHashSet {
      */
     @Override
     public boolean contains(long value) {
-        int index = hash(value);
+        long hash = hash(value);
+        int index = indexFor(hash, table.length);
         Entry current = table[index];
 
         while (current != null) {
@@ -111,7 +126,8 @@ public class AuDHashSetImpl implements AuDHashSet {
         for (Entry entry : table) {
             while (entry != null) {
                 Entry next = entry.next;
-                int newIndex = hash(entry.key);
+                long hash = hash(entry.key);
+                int newIndex = indexFor(hash, newCapacity);
                 entry.next = newTable[newIndex];
                 newTable[newIndex] = entry;
                 entry = next;
