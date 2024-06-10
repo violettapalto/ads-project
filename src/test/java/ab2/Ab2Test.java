@@ -28,7 +28,7 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Ab2Tests {
+public class Ab2Test {
 
     public static final int DATA_SIZE = 1_000_000;
 

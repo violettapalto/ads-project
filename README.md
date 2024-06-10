@@ -16,11 +16,11 @@ In this practical programming task, the given Java interfaces are to be implemen
 
 - `Ab2` This interface provides a factory pattern for creating the remaining interfaces.
 
-- `AuDHashSetThis` interface specifies a simplified hashtable.
+- `AuDHashSet` This interface specifies a simplified hashtable.
 
-- `AuDQueueThis` interface specifies a simplified FIFO or LIFO queue.
+- `AuDQueue` This interface specifies a simplified FIFO or LIFO queue.
 
-- `AuDTreeSetThis` interface specifies the data structure of a sorted tree.
+- `AuDTreeSet` This interface specifies the data structure of a sorted tree.
 
 The points distribution is as follows: 4 points for the hashtable, 4 points for the implementation of the queue, and 7 points for the implementation of the sorted tree.
 
@@ -30,7 +30,7 @@ Download the Ab2-ZIP file provided in Moodle. The build tool Gradle is used, whi
 
 - Interface `Ab2` in the Java package `ab2`, as well as other interfaces to be implemented.
 - "Empty" implementation (as a basic framework) of the above-mentioned `Ab2` interface in the package `ab2.impl.Surnames` (hereinafter referred to as _implementation package_). Your task is to implement the corresponding interface.
-- A test class `Ab2Tests` in the package `ab2`, with which you can test your implementations. This test class (with additional test cases) will also be used to evaluate your submission (see point "Testing").
+- A test class `Ab2Test` in the package `ab2`, with which you can test your implementations. This test class (with additional test cases) will also be used to evaluate your submission (see point "Testing").
 
 ## Integration into your IDE (optional)
 

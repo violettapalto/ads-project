@@ -18,11 +18,11 @@ Interfaces zu implementieren, gemäß der in den Java-Kommentaren spezifizierten
 - `Ab2` Dieses Interface stellt ein Factory-Pattern zur Erstellung der restlichen Interfaces
 bereit.
 
-- `AuDHashSetDieses` Interface spezifiziert eine simplifizierte Hashtabelle.
+- `AuDHashSet` Dieses Interface spezifiziert eine simplifizierte Hashtabelle.
 
-- `AuDQueueDieses` Interface spezifiziert eine simplifizierte FIFO- bzw. LIFO-Warteschlange.
+- `AuDQueue` Dieses Interface spezifiziert eine simplifizierte FIFO- bzw. LIFO-Warteschlange.
 
-- `AuDTreeSetDieses` Interface spezifiziert die Datenstruktur eines sortierten Baumes.
+- `AuDTreeSet` Dieses Interface spezifiziert die Datenstruktur eines sortierten Baumes.
 
 Die Punkteaufteilung ergibt sich wie folgt: 4 Punkte für die Hashtabelle, 4 Punkte für die Implementierung der Warteschlange, sowie 7 Punkte für die Implementierung des sortierten
 Baumes.
@@ -35,7 +35,7 @@ Laden Sie die in Moodle bereitgestellte Ab2-ZIP-Datei herunter. Es wird das Buil
 - “Leere” Implementierung (als Grundgerüst) des oben genannten `Ab2`-Interfaces im Paket
     `ab2.impl.Nachnamen` (im Folgenden _Implementierungspaket_ genannt). Ihre Aufgabe
     besteht in der Implementierung des entsprechenden Interfaces.
-- Eine Testklasse `Ab2Tests` im Paket `ab2`, mit der Sie Ihre Implementierungen testen können.
+- Eine Testklasse `Ab2Test` im Paket `ab2`, mit der Sie Ihre Implementierungen testen können.
     Diese Testklasse (mit zusätzlichen Testfällen) wird auch zur Bewertung Ihrer Abgabe
     verwendet (siehe Punkt “Testen”).
 
