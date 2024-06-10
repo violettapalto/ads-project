@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/**
+ * More in-depth test class for the implementation of the AuDSortedTree interface.
+ */
 public class AuDSortedTreeImplTest {
 
     private AuDSortedTreeImpl tree;

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.NoSuchElementException;
 
 /**
- * More in-depth test class for the implementation of the AuDHashSet interface.
+ * More in-depth test class for the implementation of the AuDQueue interface.
  */
 public class AuDQueueImplTest {
 
