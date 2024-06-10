@@ -1,4 +1,4 @@
-package ab2.impl.Palto;
+package ab2.impl.palto;
 
 import ab2.AuDHashSet;
 import ab2.AuDQueue;
@@ -19,6 +19,10 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class provided with the assignment. It covers most basic test cases and
+ * provides a good starting point for testing the implementation.
+ */
 public class Ab2ImplTest {
 
 	public static final int DATA_SIZE = 1_000_000;

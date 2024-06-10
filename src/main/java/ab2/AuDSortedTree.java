@@ -10,12 +10,14 @@ public interface AuDSortedTree {
 	 * and "false" if the value already exists.
 	 *
 	 * @param value the value to be inserted
-	 * @return true if the element was successfully inserted, false if the value already exists
+	 * @return true if the element was successfully inserted, false if the value
+	 *         already exists
 	 */
 	boolean add(int value);
 
 	/**
-	 * Returns true if the TreeSet contains the specified value; otherwise, returns false.
+	 * Returns true if the TreeSet contains the specified value; otherwise, returns
+	 * false.
 	 *
 	 * @param value the value to be searched
 	 * @return true if the TreeSet contains the value, false otherwise
@@ -27,7 +29,8 @@ public interface AuDSortedTree {
 	 * and false if the value doesn't exist.
 	 *
 	 * @param value the value to be deleted
-	 * @return true if the element was successfully deleted, false if the value doesn't exist
+	 * @return true if the element was successfully deleted, false if the value
+	 *         doesn't exist
 	 */
 	boolean delete(int value);
 
@@ -40,7 +43,8 @@ public interface AuDSortedTree {
 	int[] toArray(Ordering order);
 
 	/**
-	 * Returns all values that are located in the leaf nodes of the tree as an array.
+	 * Returns all values that are located in the leaf nodes of the tree as an
+	 * array.
 	 * The order is irrelevant here.
 	 *
 	 * @return an array of values located in the leaf nodes of the tree
@@ -65,6 +69,17 @@ public interface AuDSortedTree {
 	 * An enum representing the traversal orders for the TreeSet.
 	 */
 	enum Ordering {
-		LWR, RWL, LRW, RLW, WLR, WRL
+		/** Left-Root-Right */
+		LWR,
+		/** Right-Root-Left */
+		RWL,
+		/** Left-Right-Root */
+		LRW,
+		/** Right-Left-Root */
+		RLW,
+		/** Root-Left-Right */
+		WLR,
+		/** Root-Right-Left */
+		WRL
 	}
 }
