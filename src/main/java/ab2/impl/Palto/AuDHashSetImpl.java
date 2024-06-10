@@ -2,19 +2,30 @@ package ab2.impl.Palto;
 
 import ab2.AuDHashSet;
 
+/**
+ * Implementation of the AuDHashSet interface.
+ */
 public class AuDHashSetImpl implements AuDHashSet {
-    
+
     private static final int INITIAL_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
 
     private Entry[] table;
     private int size;
 
+    /**
+     * Constructs a new AuDHashSetImpl object with the initial capacity of 16.
+     */
     public AuDHashSetImpl() {
         table = new Entry[INITIAL_CAPACITY];
         size = 0;
     }
 
+    /**
+     * Constructs a new AuDHashSetImpl object with the specified capacity.
+     *
+     * @param capacity the initial capacity of the hash set
+     */
     public AuDHashSetImpl(int capacity) {
         table = new Entry[capacity];
         size = 0;
