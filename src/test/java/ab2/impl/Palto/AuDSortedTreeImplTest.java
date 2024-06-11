@@ -29,6 +29,7 @@ public class AuDSortedTreeImplTest {
 
     @Test
     public void testContains() {
+        assertFalse(tree.contains(5));
         tree.add(5);
         tree.add(10);
         assertTrue(tree.contains(5));
@@ -38,11 +39,18 @@ public class AuDSortedTreeImplTest {
 
     @Test
     public void testDelete() {
+        assertFalse(tree.delete(5)); // Deleting from empty tree should return false
         tree.add(5);
+        tree.add(3);
+        tree.add(4);
+        tree.add(2);
         tree.add(10);
+        tree.add(15);
         assertTrue(tree.delete(5));
         assertFalse(tree.contains(5)); // Value should be deleted
-        assertFalse(tree.delete(15)); // Deleting non-existing value should return false
+        assertFalse(tree.delete(20)); // Deleting non-existing value should return false
+        assertTrue(tree.delete(3));
+        assertFalse(tree.contains(3)); // Value should be deleted
     }
 
     @Test
