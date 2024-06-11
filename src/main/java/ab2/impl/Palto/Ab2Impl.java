@@ -21,8 +21,7 @@ public class Ab2Impl implements Ab2 {
 
     @Override
     public AuDQueue emptyQueue(Type type) {
-        // TODO: Auto-generated method stub
-        return null;
+        return new AuDQueueImpl(type);
     }
 
 }

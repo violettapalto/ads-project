@@ -24,7 +24,9 @@ public interface AuDQueue {
 	 * Type of the queue (relevant for the "dequeue" method).
 	 */
 	enum Type {
-		FIFO, // First-In-First-Out
-		LIFO; // Last-In-First-Out
+		/** First-In-First-Out */
+		FIFO, 
+		/** Last-In-First-Out */
+		LIFO;
 	}
 }
