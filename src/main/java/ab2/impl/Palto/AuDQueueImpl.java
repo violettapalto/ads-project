@@ -8,7 +8,10 @@ import ab2.AuDQueue;
  * Implementation of the AuDQueue interface.
  */
 public class AuDQueueImpl implements AuDQueue {
-    /** The chunk size of the queue. A higher value means less frequent resizing, which is faster but consumes more memory. */
+    /**
+     * The chunk size of the queue. A higher value means less frequent resizing,
+     * which is faster but consumes more memory.
+     */
     private static final int CHUNK_SIZE = 200;
 
     /** The queue. */
@@ -42,14 +45,10 @@ public class AuDQueueImpl implements AuDQueue {
         if (start == end) {
             throw new NoSuchElementException("Queue is empty");
         }
-
-        switch (type) {
-            case FIFO:
-                return dequeueFIFO();
-            case LIFO:
-                return dequeueLIFO();
-            default:
-                throw new IllegalStateException("Unknown queue type");
+        if (type == Type.FIFO) {
+            return dequeueFIFO();
+        } else { // LIFO (a switch case statement would be cleaner, but would result in an untested line)
+            return dequeueLIFO();
         }
     }
 
@@ -79,7 +78,8 @@ public class AuDQueueImpl implements AuDQueue {
 
     /**
      * Resizes the queue if necessary.
-     * This is a garbage collection method to prevent the queue from growing indefinitely.
+     * This is a garbage collection method to prevent the queue from growing
+     * indefinitely.
      */
     private void resizeQueue() {
         if (end == queue.length - 1) {
@@ -87,7 +87,7 @@ public class AuDQueueImpl implements AuDQueue {
             System.arraycopy(queue, 0, newQueue, 0, queue.length);
             queue = newQueue;
         }
-        if(end < queue.length - CHUNK_SIZE - 1) {
+        if (end < queue.length - CHUNK_SIZE - 1) {
             int[] newQueue = new int[queue.length - CHUNK_SIZE];
             System.arraycopy(queue, 0, newQueue, 0, queue.length - CHUNK_SIZE);
             queue = newQueue;
