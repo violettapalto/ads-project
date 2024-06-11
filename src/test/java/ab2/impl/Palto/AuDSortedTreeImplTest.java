@@ -43,14 +43,28 @@ public class AuDSortedTreeImplTest {
         tree.add(5);
         tree.add(3);
         tree.add(4);
+        tree.add(1);
+        tree.add(0);
         tree.add(2);
-        tree.add(10);
         tree.add(15);
+        tree.add(10);
+        
         assertTrue(tree.delete(5));
         assertFalse(tree.contains(5)); // Value should be deleted
+        
         assertFalse(tree.delete(20)); // Deleting non-existing value should return false
+        
+        assertTrue(tree.delete(0));
+        assertFalse(tree.contains(0)); // Value should be deleted
+
+        assertTrue(tree.delete(4));
+        assertFalse(tree.contains(4)); // Value should be deleted
+
         assertTrue(tree.delete(3));
         assertFalse(tree.contains(3)); // Value should be deleted
+
+        assertTrue(tree.delete(15));
+        assertFalse(tree.contains(15)); // Value should be deleted
     }
 
     @Test

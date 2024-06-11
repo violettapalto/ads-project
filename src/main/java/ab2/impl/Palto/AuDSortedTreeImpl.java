@@ -17,19 +17,23 @@ public class AuDSortedTreeImpl implements AuDSortedTree {
     @Override
     public boolean add(int value) {
         if (node == null) {
+            // Tree is empty
             node = new Node(value);
             return true;
         } else if (value < node.value) {
+            // Value is smaller than the current node
             if (left == null) {
                 left = new AuDSortedTreeImpl();
             }
             return left.add(value);
         } else if (value > node.value) {
+            // Value is greater than the current node
             if (right == null) {
                 right = new AuDSortedTreeImpl();
             }
             return right.add(value);
         } else {
+            // Value already exists
             return false;
         }
     }
@@ -37,12 +41,16 @@ public class AuDSortedTreeImpl implements AuDSortedTree {
     @Override
     public boolean contains(int value) {
         if (node == null) {
+            // Tree is empty
             return false;
         } else if (value < node.value) {
+            // Value is smaller than the current node
             return left != null && left.contains(value);
         } else if (value > node.value) {
+            // Value is greater than the current node
             return right != null && right.contains(value);
         } else {
+            // Value is equal to the current node
             return true;
         }
     }
@@ -50,23 +58,41 @@ public class AuDSortedTreeImpl implements AuDSortedTree {
     @Override
     public boolean delete(int value) {
         if (node == null) {
+            // Tree is empty
             return false;
         } else if (value < node.value) {
-            return left != null && left.delete(value);
+            // Value is smaller than the current node
+            boolean deleted = false;
+            if (left != null) {
+                deleted = left.delete(value);
+                garbageCollect();
+            }
+            return deleted;
         } else if (value > node.value) {
-            return right != null && right.delete(value);
+            // Value is greater than the current node
+            boolean deleted = false;
+            if (right != null) {
+                deleted = right.delete(value);
+                garbageCollect();
+            }
+            return deleted;
         } else {
+            // Value is equal to the current node
             if (left == null && right == null) {
+                // Node has no children
                 node = null;
             } else if (left == null) {
+                // Node has one child on the right
                 node = right.node;
                 left = right.left;
                 right = right.right;
             } else if (right == null) {
+                // Node has one child on the left
                 node = left.node;
                 right = left.right;
                 left = left.left;
             } else {
+                // Node has two children, replace with the minimum value from the right subtree
                 int min = right.min();
                 node.value = min;
                 right.delete(min);
@@ -106,11 +132,12 @@ public class AuDSortedTreeImpl implements AuDSortedTree {
         } else if (left == null && right == null) {
             return new int[] { node.value };
         } else {
-            boolean isLeaf = left == null || right == null;
-            int[] leftLeafs = left == null ? new int[0] : left.getLeafs();
-            int[] rightLeafs = right == null ? new int[0] : right.getLeafs();
-            return isLeaf ? concat(new int[] { node.value }, concat(leftLeafs, rightLeafs))
-                    : concat(leftLeafs, rightLeafs);
+            boolean includeSelf = left == null || right == null;
+            int[] leftLeaves = left == null ? new int[0] : left.getLeafs();
+            int[] rightLeaves = right == null ? new int[0] : right.getLeafs();
+
+            return includeSelf ? concat(new int[] { node.value }, concat(leftLeaves, rightLeaves))
+                    : concat(leftLeaves, rightLeaves);
         }
     }
 
@@ -133,6 +160,18 @@ public class AuDSortedTreeImpl implements AuDSortedTree {
             return node.value;
         } else {
             return right.max();
+        }
+    }
+
+    /**
+     * Removes the children of the current node if their node is null.
+     */
+    private void garbageCollect() {
+        if (left != null && left.node == null) {
+            left = null;
+        }
+        if (right != null && right.node == null) {
+            right = null;
         }
     }
 

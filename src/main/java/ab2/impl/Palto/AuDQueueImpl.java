@@ -45,10 +45,13 @@ public class AuDQueueImpl implements AuDQueue {
         if (start == end) {
             throw new NoSuchElementException("Queue is empty");
         }
-        if (type == Type.FIFO) {
-            return dequeueFIFO();
-        } else { // LIFO (a switch case statement would be cleaner, but would result in an untested line)
-            return dequeueLIFO();
+        switch (type) {
+            case FIFO:
+                return dequeueFIFO();
+            case LIFO:
+                return dequeueLIFO();
+            default:
+                throw new IllegalArgumentException("Invalid queue type");
         }
     }
 
