@@ -1,5 +1,6 @@
 package ab2.impl.palto;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,9 +12,15 @@ import java.util.NoSuchElementException;
  */
 public class AuDQueueImplTest {
 
+    private AuDQueueImpl queue;
+
+    @BeforeEach
+    public void setUp() {
+        queue = new AuDQueueImpl(AuDQueueImpl.Type.FIFO);
+    }
+
     @Test
     public void testEnqueueAndDequeue() {
-        AuDQueueImpl queue = new AuDQueueImpl();
         queue.enqueue(10);
         queue.enqueue(20);
         queue.enqueue(30);
@@ -25,8 +32,6 @@ public class AuDQueueImplTest {
 
     @Test
     public void testDequeueEmptyQueue() {
-        AuDQueueImpl queue = new AuDQueueImpl();
-
         assertThrows(NoSuchElementException.class, () -> {
             queue.dequeue();
         });

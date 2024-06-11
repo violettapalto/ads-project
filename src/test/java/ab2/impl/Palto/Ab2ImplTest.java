@@ -49,7 +49,12 @@ public class Ab2ImplTest {
 		}
 
 		for (int i = 0; i < DATA_SIZE; i++) {
-			assertEquals(data[i], queue.dequeue());
+			int val = queue.dequeue();
+			int valRef = data[i];
+			if (val != valRef) {
+				System.out.println("i: " + i);
+			}
+			assertEquals(data[i], val);
 		}
 
 	}

@@ -8,48 +8,38 @@ import ab2.AuDQueue;
  * Implementation of the AuDQueue interface.
  */
 public class AuDQueueImpl implements AuDQueue {
+    /** The chunk size of the queue. A higher value means less frequent resizing, which is faster but consumes more memory. */
+    private static final int CHUNK_SIZE = 200;
 
-
-    /** The head of the queue. */
-    private Node head;
-    /** The tail of the queue. */
-    private Node tail;
+    /** The queue. */
+    private int[] queue = new int[CHUNK_SIZE];
+    /** The start index of the queue. */
+    private int start = -1;
+    /** The end index of the queue. */
+    private int end = -1;
     /** The type of the queue. */
     private Type type = Type.FIFO;
 
     /**
      * Constructs a new AuDQueueImpl object.
-     */
-    public AuDQueueImpl() {
-        head = null;
-        tail = null;
-    }
-
-    /**
-     * Constructs a new AuDQueueImpl object with the specified type.
      *
      * @param type the type of the queue
      */
     public AuDQueueImpl(Type type) {
-        this();
         this.type = type;
     }
 
     @Override
     public void enqueue(int value) {
-        Node node = new Node(value);
-        if (head == null) {
-            head = node;
-            tail = node;
-        } else {
-            tail.next = node;
-            tail = node;
-        }
+        resizeQueue();
+
+        end++;
+        queue[end] = value;
     }
 
     @Override
     public int dequeue() {
-        if (head == null) {
+        if (start == end) {
             throw new NoSuchElementException("Queue is empty");
         }
 
@@ -69,12 +59,10 @@ public class AuDQueueImpl implements AuDQueue {
      * @return the removed element from the queue
      */
     private int dequeueFIFO() {
-        int value = head.value;
-        head = head.next;
-        if (head == null) {
-            tail = null;
-        }
-        return value;
+        resizeQueue();
+
+        start++;
+        return queue[start];
     }
 
     /**
@@ -83,38 +71,33 @@ public class AuDQueueImpl implements AuDQueue {
      * @return the removed element from the queue
      */
     private int dequeueLIFO() {
-        int value = tail.value;
-        if (head == tail) {
-            head = null;
-            tail = null;
-        } else {
-            Node current = head;
-            while (current.next != tail && current.next != null) {
-                current = current.next;
-            }
-            tail = current;
-            tail.next = null;
-        }
-        return value;
+        resizeQueue();
+
+        end--;
+        return queue[end + 1];
     }
 
     /**
-     * Represents a node in the queue.
+     * Resizes the queue if necessary.
+     * This is a garbage collection method to prevent the queue from growing indefinitely.
      */
-    private static class Node {
-        /** The value of the node. */
-        private int value;
-        /** The next node in the queue. */
-        private Node next;
-
-        /**
-         * Constructs a new Node object with the specified value.
-         *
-         * @param value the value of the node
-         */
-        public Node(int value) {
-            this.value = value;
-            this.next = null;
+    private void resizeQueue() {
+        if (end == queue.length - 1) {
+            int[] newQueue = new int[queue.length + CHUNK_SIZE];
+            System.arraycopy(queue, 0, newQueue, 0, queue.length);
+            queue = newQueue;
+        }
+        if(end < queue.length - CHUNK_SIZE - 1) {
+            int[] newQueue = new int[queue.length - CHUNK_SIZE];
+            System.arraycopy(queue, 0, newQueue, 0, queue.length - CHUNK_SIZE);
+            queue = newQueue;
+        }
+        if (start > CHUNK_SIZE + 1) {
+            int[] newQueue = new int[queue.length - CHUNK_SIZE];
+            System.arraycopy(queue, CHUNK_SIZE, newQueue, 0, queue.length - CHUNK_SIZE);
+            queue = newQueue;
+            start -= CHUNK_SIZE;
+            end -= CHUNK_SIZE;
         }
     }
 }
