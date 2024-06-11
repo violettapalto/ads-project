@@ -21,7 +21,6 @@ public class AuDQueueImplTest {
         lifoQueue = new AuDQueueImpl(AuDQueueImpl.Type.LIFO);
     }
 
-    
     @Test
     public void testFifoQueueEnqueue() {
         fifoQueue.enqueue(1);

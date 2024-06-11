@@ -80,6 +80,6 @@ public interface AuDSortedTree {
 		/** Root-Left-Right */
 		WLR,
 		/** Root-Right-Left */
-		WRL
+		WRL,
 	}
 }

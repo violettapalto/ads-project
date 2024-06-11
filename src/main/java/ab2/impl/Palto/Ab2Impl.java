@@ -15,8 +15,7 @@ public class Ab2Impl implements Ab2 {
 
     @Override
     public AuDSortedTree emptyTree() {
-        // TODO: Auto-generated method stub
-        return null;
+        return new AuDSortedTreeImpl();
     }
 
     @Override

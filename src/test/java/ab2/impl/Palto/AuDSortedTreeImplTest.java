@@ -50,10 +50,10 @@ public class AuDSortedTreeImplTest {
         tree.add(5);
         tree.add(10);
         tree.add(15);
-        int[] ascendingOrder = tree.toArray(AuDSortedTreeImpl.Ordering.LWR);
-        int[] descendingOrder = tree.toArray(AuDSortedTreeImpl.Ordering.WLR);
-        assertArrayEquals(new int[]{5, 10, 15}, ascendingOrder);
-        assertArrayEquals(new int[]{15, 10, 5}, descendingOrder);
+        int[] lwr = tree.toArray(AuDSortedTreeImpl.Ordering.LWR);
+        int[] rwl = tree.toArray(AuDSortedTreeImpl.Ordering.RWL);
+        assertArrayEquals(new int[]{5, 10, 15}, lwr);
+        assertArrayEquals(new int[]{15, 10, 5}, rwl);
     }
 
     @Test
