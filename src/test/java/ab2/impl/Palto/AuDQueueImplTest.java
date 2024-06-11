@@ -12,28 +12,49 @@ import java.util.NoSuchElementException;
  */
 public class AuDQueueImplTest {
 
-    private AuDQueueImpl queue;
+    private AuDQueueImpl fifoQueue;
+    private AuDQueueImpl lifoQueue;
 
     @BeforeEach
     public void setUp() {
-        queue = new AuDQueueImpl(AuDQueueImpl.Type.FIFO);
+        fifoQueue = new AuDQueueImpl(AuDQueueImpl.Type.FIFO);
+        lifoQueue = new AuDQueueImpl(AuDQueueImpl.Type.LIFO);
+    }
+
+    
+    @Test
+    public void testFifoQueueEnqueue() {
+        fifoQueue.enqueue(1);
+        fifoQueue.enqueue(2);
+        fifoQueue.enqueue(3);
+
+        assertEquals(1, fifoQueue.dequeue());
+        assertEquals(2, fifoQueue.dequeue());
+        assertEquals(3, fifoQueue.dequeue());
     }
 
     @Test
-    public void testEnqueueAndDequeue() {
-        queue.enqueue(10);
-        queue.enqueue(20);
-        queue.enqueue(30);
+    public void testLifoQueueEnqueue() {
+        lifoQueue.enqueue(1);
+        lifoQueue.enqueue(2);
+        lifoQueue.enqueue(3);
 
-        assertEquals(10, queue.dequeue());
-        assertEquals(20, queue.dequeue());
-        assertEquals(30, queue.dequeue());
+        assertEquals(3, lifoQueue.dequeue());
+        assertEquals(2, lifoQueue.dequeue());
+        assertEquals(1, lifoQueue.dequeue());
     }
 
     @Test
-    public void testDequeueEmptyQueue() {
+    public void testFifoQueueDequeueEmpty() {
         assertThrows(NoSuchElementException.class, () -> {
-            queue.dequeue();
+            fifoQueue.dequeue();
+        });
+    }
+
+    @Test
+    public void testLifoQueueDequeueEmpty() {
+        assertThrows(NoSuchElementException.class, () -> {
+            lifoQueue.dequeue();
         });
     }
 }
