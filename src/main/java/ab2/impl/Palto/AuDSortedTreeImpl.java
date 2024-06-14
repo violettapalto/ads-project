@@ -136,7 +136,7 @@ public class AuDSortedTreeImpl implements AuDSortedTree {
             int[] leftLeaves = left == null ? new int[0] : left.getLeafs();
             int[] rightLeaves = right == null ? new int[0] : right.getLeafs();
 
-            return includeSelf ? concat(new int[] { node.value }, concat(leftLeaves, rightLeaves))
+            return includeSelf ? concat(leftLeaves, concat(new int[] { node.value }, rightLeaves))
                     : concat(leftLeaves, rightLeaves);
         }
     }
